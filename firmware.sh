@@ -75,9 +75,9 @@ then email MrChromebox@gmail.com  and include a screenshot of the main menu."
     fi
 
     echo_yellow "
-NOTE: RW_LEGACY firmware cannot be used to run Windows. Period.
+NOTE: RW_LEGACY firmware can be used to run Windows, but it will be a much better experience if you use Full Rom firmware.
 If you are looking to run Windows, see the documentation on coolstar.org.
-MrChromebox does not provide any support for running Windows."
+MrChromebox does not provide any support for running Windows on RW_LEGACY."
         REPLY=""
         read -rep "Press Y to continue or any other key to return to the main menu. "
         [[ "$REPLY" = "y" || "$REPLY" = "Y" ]] || return
