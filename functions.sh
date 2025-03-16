@@ -41,7 +41,9 @@ isMdn=false
 isJsl=false
 isTgl=false
 isAdl=false
+isAdl_2=false
 isAdlN=false
+isMtl=false
 isUnsupported=false
 firmwareType=""
 isStock=true
@@ -96,10 +98,12 @@ tgl=('chronicler' 'collis' 'copano' 'delbin' 'drobit' 'eldrid' 'elemi' 'lillipup
 adl=('anahera' 'brya' 'banshee' 'kano' 'crota' 'crota360' 'felwinter' 'gimble' 'marasov' 'mithrax' \
      'omnigul' 'osiris' 'primus' 'redrix' 'redrix4es' 'taeko' 'taniks' 'vell' 'volmar' 'zavala' \
     'constitution' 'gladios' 'kinox' 'kuldax' 'lisbon' 'moli')
+adl_2=('banshee' 'omnigul')
 adl_n=('anraggar' 'anraggar360' 'craask' 'craaskana' 'craaskbowl' 'craaskino' 'craaskov' 'craaskvin' 'craasneto' \
      'joxer' 'joxero' 'nereid' 'nirwin' 'nivviks' 'pujjo1e' 'pujjo' 'pujjoflex' 'pujjoteen' 'pujjoteen15w' \
      'quandiso' 'quandiso360' 'uldren' 'uldren360' 'xivu' 'xivu360' 'yahiko' 'yavijo' 'yaviks' \
      'yavikso' 'yavilla' 'yavilly')
+mtl=('rex' 'screebo')
 
 str=('aleena' 'barla' 'careena' 'grunt' 'kasumi' 'liara' 'treeya' 'treeya360')
 pco=('berknip' 'dirinboz' 'ezkinil' 'gumboz' 'jelboz360' 'morphius' 'vilboz' 'woomax')
@@ -935,6 +939,7 @@ case "${_hwid}" in
     SARIEN*)                _x='WHL|Dell Latitude 5400' ;;
     SASUKETTE*)             _x='JSL|Samsung Galaxy Chromebook Go 11' ;;
     SASUKE*)                _x='JSL|Samsung Galaxy Chromebook Go' ;;
+    SCREEBO*)               _x='MTL|ASUS ExpertBook CX54 Chromebook Plus (CX5403)' ;;
     SENTRY*)                _x='SKL|Lenovo Thinkpad 13 Chromebook' ;;
     SETZER*)                _x='BSW|HP Chromebook 11 G5' ;;
     SHYVANA*)               _x='KBL|Asus Chromebook Flip C433/C434' ;;
@@ -1038,6 +1043,7 @@ JSL) deviceCpuType="Intel JasperLake" ;;
 TGL) deviceCpuType="Intel TigerLake" ;;
 ADL) deviceCpuType="Intel AlderLake/RaptorLake-U/P" ;;
 ADN) deviceCpuType="Intel AlderLake-N" ;;
+MTL) deviceCpuType="Intel Meteorlake" ;;
 STR) deviceCpuType="AMD StoneyRidge" ;;
 PCO) deviceCpuType="AMD Picasso" ;;
 CZN) deviceCpuType="AMD Cezanne" ;;
@@ -1070,7 +1076,9 @@ diagnostic_report_set deviceCpuType.Name "$deviceCpuType"
 [[ "${jsl[@]}" =~ "$device" ]] && isJsl=true
 [[ "${tgl[@]}" =~ "$device" ]] && isTgl=true
 [[ "${adl[@]}" =~ "$device" ]] && isAdl=true
+[[ "${adl_2[@]}" =~ "$device" ]] && isAdl_2=true
 [[ "${adl_n[@]}" =~ "$device" ]] && isAdlN=true
+[[ "${mtl[@]}" =~ "$device" ]] && isMtl=true
 [[ "${cml_boxes[@]}" =~ "$device" ]] && isCmlBox=true
 [[ "${cml_books[@]}" =~ "$device" ]] && isCmlBook=true
 [[ "${UEFI_ROMS[@]}" =~ "$device" ]] && hasUEFIoption=true
@@ -1079,13 +1087,15 @@ diagnostic_report_set deviceCpuType.Name "$deviceCpuType"
     || "$isKbl" = true || "$isStr" = true || "$isWhl" = true \
     || "$isGlk" = true || "$isCml" = true || "$isPco" = true \
     || "$isJsl" = true || "$isTgl" = true || "$isAdl" = true \
-    || "$isCzn" = true || "$isMdn" = true || "$isAdlN" = true ]] || isUnsupported=true
+    || "$isCzn" = true || "$isMdn" = true || "$isAdlN" = true \
+    || "$isMtl" = true ]] || isUnsupported=true
 [[ "$isHswBox" = true || "$isBdwBox" = true || "${kbl_boxes[@]}" =~ "$device" \
     || "$device" = "ninja" || "$device" = "buddy" ]] && hasLAN=true
 [[ "$isApl" = true || "$isKbl" = true || "$isStr" = true || "$isWhl" = true \
     || "$isGlk" = true || "$isCml" = true || "$isPco" = true \
     || "$isJsl" = true || "$isTgl" = true || "$isAdl" = true \
-    || "$isCzn" = true || "$isMdn" = true || "$isAdlN" = true ]] && hasCR50=true
+    || "$isCzn" = true || "$isMdn" = true || "$isAdlN" = true  \
+    || "$isMtl" = true ]] && hasCR50=true
 [[ "$device" = "rammus" || "$isGlk" = true ]] && useAltfwStd=true
 [[ "${eol_devices[@]}" =~ "$device" ]] && isEOL=true || isEOL=false
 

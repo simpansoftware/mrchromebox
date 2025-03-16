@@ -48,10 +48,14 @@ function flash_rwlegacy()
         rwlegacy_file=$rwl_altfw_tgl
     elif [ "$isGlk" = true ]; then
         rwlegacy_file=$rwl_altfw_glk
+    elif [ "$isAdl_2" = true ]; then
+        rwlegacy_file=$rwl_altfw_adl_2
     elif [ "$isAdl" = true ]; then
         rwlegacy_file=$rwl_altfw_adl
     elif [ "$isAdlN" = true ]; then
         rwlegacy_file=$rwl_altfw_adl_n
+    elif [ "$isMtl" = true ]; then
+        rwlegacy_file=$rwl_altfw_mtl
     elif [ "$isStr" = true ]; then
         rwlegacy_file=$rwl_altfw_stoney
     elif [ "$isPco" = true ]; then
@@ -791,7 +795,7 @@ function extract_firmware_from_recovery_usb()
         fi
     elif [ -f "$_unpacked/manifest.json" ]; then
         _version=$(grep -m1 -A4 "$_board\":" "$_unpacked/manifest.json" | grep -m1 "rw" | sed 's/.*\(rw.*\)/\1/' | sed 's/.*\("Google.*\)/\1/' | cut -f2 -d'"')
-        _bios_image=$(grep -m1 -A7 "$_board\":" "$_unpacked/manifest.json" | grep -m1 "image" | sed 's/.*"image": //' | cut -f2 -d'"')
+        _bios_image=$(grep -m1 -A10 "$_board\":" "$_unpacked/manifest.json" | grep -m1 "image" | sed 's/.*"image": //' | cut -f2 -d'"')
     else
         if [ -f $_unpacked/VERSION ]; then
             _version=$(cat $_unpacked/VERSION | grep BIOS\ version: | cut -f2 -d: | tr -d \ )
